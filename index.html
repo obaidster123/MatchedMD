@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zayan Syed — Med School Consulting</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #FAF7F2;
+    --warm-dark: #1C1A17;
+    --olive: #4A5240;
+    --olive-light: #8A9478;
+    --accent: #C4722A;
+    --accent-light: #F0DCC8;
+    --muted: #7A776E;
+    --border: rgba(74,82,64,0.15);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--warm-dark);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(250,247,242,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .nav-logo {
+    font-family: 'Lora', serif;
+    font-size: 1.1rem;
+    color: var(--warm-dark);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--muted);
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--warm-dark); }
+
+  .hero {
+    min-height: 90vh;
+    display: flex; align-items: center;
+    padding: 5rem 2rem 4rem;
+    max-width: 1000px; margin: 0 auto;
+  }
+  .hero-inner { max-width: 660px; }
+  .hero-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-light);
+    border-radius: 100px;
+    padding: 4px 14px;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: 'Lora', serif;
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    line-height: 1.15;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+    color: var(--warm-dark);
+  }
+  .hero h1 em { font-style: italic; color: var(--accent); }
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 520px;
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+  }
+  .cta-row { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--olive);
+    color: #fff;
+    border: none;
+    padding: 0.85rem 2rem;
+    border-radius: 100px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--warm-dark); transform: translateY(-1px); }
+  .btn-ghost {
+    color: var(--warm-dark);
+    font-size: 0.9rem;
+    text-decoration: none;
+    border-bottom: 1px solid var(--warm-dark);
+    padding-bottom: 2px;
+    transition: opacity 0.2s;
+  }
+  .btn-ghost:hover { opacity: 0.55; }
+
+  .stats-bar { background: var(--olive); color: #fff; padding: 2rem; }
+  .stats-inner {
+    max-width: 1000px; margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1.5rem;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Lora', serif;
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+  .stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.65); text-transform: uppercase; letter-spacing: 0.08em; }
+
+  section { padding: 5rem 2rem; }
+  .section-inner { max-width: 1000px; margin: 0 auto; }
+  .section-tag { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--olive-light); margin-bottom: 0.75rem; }
+  .section-title { font-family: 'Lora', serif; font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 400; letter-spacing: -0.02em; margin-bottom: 1rem; line-height: 1.25; }
+  .section-sub { color: var(--muted); max-width: 520px; margin-bottom: 3rem; font-size: 1rem; }
+  .section-divider { width: 40px; height: 2px; background: var(--accent); margin-bottom: 1.5rem; border-radius: 2px; }
+
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  @media (max-width: 640px) { .about-grid { grid-template-columns: 1fr; } }
+  .about-text p { color: var(--muted); margin-bottom: 1rem; line-height: 1.85; }
+  .about-text p:last-child { margin-bottom: 0; }
+  .credential-list { list-style: none; }
+  .credential-list li { padding: 0.9rem 0; border-bottom: 1px solid var(--border); font-size: 0.95rem; display: flex; gap: 0.75rem; align-items: flex-start; }
+  .credential-list li:last-child { border-bottom: none; }
+  .cred-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 0.5rem; }
+
+  .services-bg { background: #F2EDE4; }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+  .service-card { background: var(--cream); padding: 2rem; }
+  .service-icon { width: 36px; height: 36px; background: var(--accent-light); border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; font-size: 1rem; color: var(--accent); }
+  .service-card h3 { font-family: 'Lora', serif; font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--warm-dark); }
+  .service-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.75; }
+
+  .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
+  .pricing-card { background: #fff; border: 1px solid var(--border); border-radius: 20px; padding: 2rem; position: relative; transition: transform 0.2s; }
+  .pricing-card:hover { transform: translateY(-3px); }
+  .pricing-card.featured { border-color: var(--olive); border-width: 2px; }
+  .featured-badge { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: var(--olive); color: #fff; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 16px; border-radius: 100px; white-space: nowrap; }
+  .pricing-tier { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
+  .pricing-name { font-family: 'Lora', serif; font-size: 1.4rem; font-weight: 600; margin-bottom: 0.25rem; color: var(--warm-dark); }
+  .pricing-price { font-size: 2.5rem; font-weight: 300; font-family: 'Lora', serif; color: var(--accent); margin: 1rem 0; line-height: 1; }
+  .pricing-price span { font-size: 1rem; color: var(--muted); font-family: 'DM Sans', sans-serif; font-weight: 400; }
+  .pricing-desc { font-size: 0.875rem; color: var(--muted); margin-bottom: 1.5rem; line-height: 1.7; }
+  .pricing-items { list-style: none; margin-bottom: 2rem; }
+  .pricing-items li { font-size: 0.875rem; padding: 0.5rem 0; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+  .pricing-items li:last-child { border-bottom: none; }
+  .item-label { color: var(--warm-dark); }
+  .item-price { color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  .addon-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+  .addon-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; }
+  .addon-name { font-size: 0.9rem; font-weight: 500; margin-bottom: 0.25rem; color: var(--warm-dark); }
+  .addon-price { font-size: 0.85rem; color: var(--accent); font-weight: 500; }
+
+  .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
+  .step-num { font-family: 'Lora', serif; font-size: 3rem; font-weight: 600; color: var(--accent-light); line-height: 1; margin-bottom: 0.75rem; }
+  .step h4 { font-family: 'Lora', serif; font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--warm-dark); }
+  .step p { font-size: 0.875rem; color: var(--muted); line-height: 1.75; }
+
+  .testimonials-bg { background: var(--warm-dark); }
+  .testimonials-bg .section-tag { color: var(--olive-light); }
+  .testimonials-bg .section-title { color: #fff; }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+  .testimonial { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 1.75rem; }
+  .stars { color: var(--accent); font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 1rem; }
+  .testimonial blockquote { font-size: 0.925rem; line-height: 1.8; color: rgba(255,255,255,0.8); font-style: italic; font-family: 'Lora', serif; margin-bottom: 1.25rem; }
+  .testimonial-author { font-size: 0.8rem; color: rgba(255,255,255,0.45); }
+
+  .cta-section { text-align: center; padding: 6rem 2rem; }
+  .cta-section p { color: var(--muted); max-width: 480px; margin: 0 auto 2.5rem; }
+
+  footer { background: var(--warm-dark); color: rgba(255,255,255,0.45); text-align: center; padding: 2rem; font-size: 0.8rem; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Zayan Syed</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <span class="hero-tag">Med School Admissions Consulting</span>
+    <h1>You don't need a <em>perfect</em> application.<br>You need the <em>right</em> one.</h1>
+    <p class="hero-sub">
+      Not everyone has a 3.9 GPA or a 520 MCAT — and that's okay. I went through this process myself, and I know how to make your actual story stand out to admissions committees.
+    </p>
+    <div class="cta-row">
+      <a href="#pricing" class="btn-primary">View packages</a>
+      <a href="#about" class="btn-ghost">Learn more</a>
+    </div>
+  </div>
+</div>
+
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div>
+      <div class="stat-num">4+</div>
+      <div class="stat-label">MD acceptances</div>
+    </div>
+    <div>
+      <div class="stat-num">6+</div>
+      <div class="stat-label">Interview invites</div>
+    </div>
+    <div>
+      <div class="stat-num">Creighton</div>
+      <div class="stat-label">Current med school</div>
+    </div>
+    <div>
+      <div class="stat-num">Real</div>
+      <div class="stat-label">Clinical + EMT experience</div>
+    </div>
+  </div>
+</div>
+
+<section id="about">
+  <div class="section-inner">
+    <div class="section-tag">About</div>
+    <div class="section-divider"></div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm a current medical student at Creighton University School of Medicine. I went through the full AMCAS cycle — multiple interviews, multiple acceptances — and I know how overwhelming and confusing the process feels when you're in it.</p>
+        <p>What I won't do is give you a cookie-cutter service. Your personal statement, activities section, and secondary essays will be written from scratch based on your actual story — not a template. I've been on the other side of this process recently enough to know what actually moves the needle.</p>
+        <p>Whether your stats are competitive or you're working with a non-traditional background, I'll help you put together the strongest application you can.</p>
+      </div>
+      <ul class="credential-list">
+        <li><span class="cred-dot"></span><span>Current MD student at Creighton University School of Medicine</span></li>
+        <li><span class="cred-dot"></span><span>4+ medical school acceptances</span></li>
+        <li><span class="cred-dot"></span><span>6+ interview invitations</span></li>
+        <li><span class="cred-dot"></span><span>Clinical hours & certified EMT experience</span></li>
+        <li><span class="cred-dot"></span><span>Full AMCAS application cycle experience</span></li>
+        <li><span class="cred-dot"></span><span>Written from scratch — not a template service</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="services-bg">
+  <div class="section-inner">
+    <div class="section-tag">Services</div>
+    <div class="section-divider"></div>
+    <h2 class="section-title">What's included</h2>
+    <p class="section-sub">Every service is built around your specific story, experiences, and goals — not a formula.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">✍️</div>
+        <h3>Personal statement</h3>
+        <p>In-depth intake call, original full draft written from scratch, narrative strategy, and two rounds of revisions. Final proofread with AMCAS character count check.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📋</div>
+        <h3>Work & activities section</h3>
+        <p>Full write-ups for up to 15 entries including Most Meaningful designations. Strategic framing of each experience to highlight growth, impact, and fit.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🏫</div>
+        <h3>Secondary essays</h3>
+        <p>School-specific research and original drafts for up to 10 schools (2–4 prompts each). Essays are written to complement — not repeat — your personal statement.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🗺️</div>
+        <h3>School list strategy</h3>
+        <p>Curated list of up to 30 schools balanced across reach, target, and safety. School-by-school rationale covering fit and realistic acceptance likelihood.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🎤</div>
+        <h3>Interview prep</h3>
+        <p>Mock sessions in traditional or MMI format with written feedback. Coaching on delivery, body language, and common scenarios like ethics and adversity questions.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📞</div>
+        <h3>Strategy session</h3>
+        <p>Included with every package. We start with your full picture — GPA, MCAT, experiences, goals — before a single word gets written.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="section-inner">
+    <div class="section-tag">Pricing</div>
+    <div class="section-divider"></div>
+    <h2 class="section-title">Transparent, upfront pricing</h2>
+    <p class="section-sub">Two main packages, plus à la carte add-ons. 50% deposit to reserve your spot, balance due before final delivery.</p>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="pricing-tier">Tier 1</div>
+        <div class="pricing-name">Core application</div>
+        <div class="pricing-price">$4,000 <span>total</span></div>
+        <p class="pricing-desc">Everything you need to get your application written and submitted — personal statement, activities, and secondaries for 10 schools.</p>
+        <ul class="pricing-items">
+          <li><span class="item-label">Personal statement (full draft + 2 revisions)</span><span class="item-price">$1,200</span></li>
+          <li><span class="item-label">Work & activities section (up to 15 entries)</span><span class="item-price">$900</span></li>
+          <li><span class="item-label">Secondary essays — 10 schools</span><span class="item-price">$1,900</span></li>
+          <li><span class="item-label">Strategy session + unlimited messaging</span><span class="item-price">Included</span></li>
+        </ul>
+        <a href="#contact" class="btn-primary" style="width:100%; text-align:center; display:block;">Get started</a>
+      </div>
+      <div class="pricing-card featured">
+        <div class="featured-badge">Recommended</div>
+        <div class="pricing-tier">Tier 2</div>
+        <div class="pricing-name">Full cycle</div>
+        <div class="pricing-price">$5,000 <span>total</span></div>
+        <p class="pricing-desc">Full application support from first draft through interview day. Best value if you want everything handled in one place.</p>
+        <ul class="pricing-items">
+          <li><span class="item-label">Everything in Tier 1</span><span class="item-price">$4,000</span></li>
+          <li><span class="item-label">School list strategy (up to 30 schools)</span><span class="item-price">$400</span></li>
+          <li><span class="item-label">Interview prep (4 × 30-min mock sessions)</span><span class="item-price">$600</span></li>
+        </ul>
+        <a href="#contact" class="btn-primary" style="width:100%; text-align:center; display:block;">Get started</a>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Lora',serif; font-weight:600; font-size:1.2rem; margin-bottom:1.25rem; color:var(--warm-dark);">À la carte add-ons</h3>
+    <div class="addon-grid">
+      <div class="addon-card"><div class="addon-name">School list strategy (standalone)</div><div class="addon-price">$400</div></div>
+      <div class="addon-card"><div class="addon-name">Additional secondary school</div><div class="addon-price">$150 / school</div></div>
+      <div class="addon-card"><div class="addon-name">Additional mock interview (60 min)</div><div class="addon-price">$250 / session</div></div>
+      <div class="addon-card"><div class="addon-name">Waitlist letter / letter of intent</div><div class="addon-price">$200</div></div>
+      <div class="addon-card"><div class="addon-name">Additional revision round</div><div class="addon-price">$150 / round</div></div>
+      <div class="addon-card"><div class="addon-name">Rush turnaround (within 5 business days)</div><div class="addon-price">+$300 surcharge</div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-inner">
+    <div class="section-tag">Process</div>
+    <div class="section-divider"></div>
+    <h2 class="section-title">How it works</h2>
+    <p class="section-sub">Simple, clear, and always collaborative.</p>
+    <div class="process-steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h4>Intro call</h4>
+        <p>We talk through your stats, experiences, timeline, and what you're looking for. No pressure — just clarity on whether this is the right fit.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h4>Pick a package</h4>
+        <p>Core application or full cycle — or we build something custom around what you actually need. 50% deposit reserves your spot.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h4>We get to work</h4>
+        <p>In-depth intake questionnaire, then your materials get drafted from scratch. You'll have unlimited messaging throughout active drafting.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h4>Submit with confidence</h4>
+        <p>Revisions, final proofread, and you're done. Everything delivered in editable format before the remaining balance is due.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials-bg">
+  <div class="section-inner">
+    <div class="section-tag">Reviews</div>
+    <div class="section-divider"></div>
+    <h2 class="section-title" style="color:#fff;">What students are saying</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <blockquote>"I had a 3.5 GPA and was terrified my application would just get filtered out. Zayan helped me figure out what actually made my story interesting — and I ended up with 3 interviews."</blockquote>
+        <div class="testimonial-author">Premed student, cycle 2024</div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <blockquote>"The activities section alone was worth it. I had no idea how to describe my clinical hours in a way that didn't sound like every other applicant. Zayan completely reframed everything."</blockquote>
+        <div class="testimonial-author">Accepted applicant, MD program</div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <blockquote>"He's been through this recently enough that he actually knows what works right now. Not generic advice — specific, honest feedback on my actual application."</blockquote>
+        <div class="testimonial-author">Creighton-bound applicant</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="cta-section">
+  <div class="section-tag">Get started</div>
+  <div class="section-divider" style="margin: 0 auto 1.5rem;"></div>
+  <h2 class="section-title">Spots are limited each cycle</h2>
+  <p>If you're applying this cycle and want to talk through your options, reach out. No commitment — just a conversation.</p>
+  <a href="mailto:placeholder@email.com" class="btn-primary">Contact Zayan</a>
+</section>
+
+<footer>
+  <p>© 2025 Zayan Syed · Medical School Admissions Consulting · All information is kept strictly confidential</p>
+</footer>
+
+</body>
+</html>
